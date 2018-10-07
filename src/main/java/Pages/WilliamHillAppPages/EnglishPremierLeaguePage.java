@@ -18,7 +18,7 @@ public class EnglishPremierLeaguePage extends MainPage{
     private final By placeBetButton = By.xpath("//input[@data-ng-click='placeBet()']");
     private final By toReturnField = By.xpath("//span[@id='total-to-return-price']");
     private final By totalStakeField = By.xpath("//span[@id='total-stake-price']");
-    private final By betSlipField = By.id("betslip-btn-toolbar");
+    private final By betSlipField = By.xpath("//div[@id='betslip-btn-toolbar']/a");
 
     //for mobile click() method is not working so has to use JS executor
     public EnglishPremierLeaguePage betForHomeTeamToWin() {
