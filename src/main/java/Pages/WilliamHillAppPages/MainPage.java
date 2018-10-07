@@ -1,10 +1,8 @@
 package Pages.WilliamHillAppPages;
 
-import Driver.Driver;
 import Pages.BasePage;
 import junitx.util.PropertyManager;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 
 /**
  * Created by Dawidek on 2018-10-03.
@@ -20,10 +18,9 @@ public class MainPage extends BasePage {
 
     public FootballPage clickOnFootballField(){
 
-        //for Mobile emulation
+        //for mobile click() method is not working so has to use JS executor
         if(PropertyManager.getProperty("BROWSER").toLowerCase().equals("mobile")) {
-            WebElement element = Driver.getDriver().findElement(footballField);
-            jsExecutor.executeScript("arguments[0].click();", element);
+            clickOnElementByJSexec(footballField);
         } else {
             //for Web browsers
             clickOnElement(footballField);

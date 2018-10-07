@@ -1,6 +1,7 @@
 package Pages;
 
 import Driver.Driver;
+import Waits.CustomWaits;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -56,16 +57,23 @@ public class BasePage {
         actions.moveToElement(findElement(elementBy)).click().perform();
     }
 
+    protected void clickOnElementByJSexec(By elementBy){
+        wait.until(ExpectedConditions.invisibilityOf(findElement(By.xpath("//p[contains(text(),'Loading... Please wait')]"))));
+        CustomWaits.waitForElementPresent(elementBy, 2);
+        WebElement element = findElement(elementBy);
+        jsExecutor.executeScript("arguments[0].click();", element);
+    }
+
     protected WebElement findElement(By elementBy){
         return Driver.getDriver().findElement(elementBy);
     }
 
     protected Double getLabelTextAsDouble(By elementBy){
-        return Double.valueOf(Driver.getDriver().findElement(elementBy).getText());
+        return Double.valueOf(findElement(elementBy).getText());
     }
 
     protected Double getAndConvertBidAmount(By elementBy){
-        String text = Driver.getDriver().findElement(elementBy).getText();
+        String text = findElement(elementBy).getText();
         String[] numbers = text.split("/");
 
         double i1 = Double.valueOf(numbers[0]);
@@ -79,7 +87,7 @@ public class BasePage {
 
     protected void provideInput(By inputBy, CharSequence value){
         wait.until(ExpectedConditions.elementToBeClickable(inputBy));
-        WebElement input = Driver.getDriver().findElement(inputBy);
+        WebElement input = findElement(inputBy);
         input.clear();
         input.sendKeys(value);
         Assert.assertEquals(input.getAttribute("value"), value);

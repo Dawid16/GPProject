@@ -29,7 +29,6 @@ public class DriverManager {
         System.setProperty("webdriver.chrome.driver", "D://GPProject//src//main//resources//drivers//chromedriver.exe");
 
         Map<String, String> mobileEmulation = new HashMap<>();
-
         mobileEmulation.put("deviceName", "iPhone 8 Plus");
 
         ChromeOptions chromeOptions = new ChromeOptions();
